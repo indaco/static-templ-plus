@@ -25,12 +25,13 @@ func usage() {
 Options:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
-  -t  Run templ fmt & generate commands.
+  -f  Run templ fmt.
+  -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
 
 Examples:
   # Run templ fmt & templ generate commands and output to default directory
-  %s -i web/pages -t=true
+  %s -i web/pages -f=true -g=true
 
   # Specify input and output directories
   %s -i web/pages -o web/pages
@@ -39,11 +40,12 @@ Examples:
 
 func main() {
 	var inputDir, outputDir string
-	var runTempl, debug bool
+	var runFormat, runGenerate, debug bool
 
 	flag.StringVar(&inputDir, "i", "web/pages", `Specify input directory.`)
 	flag.StringVar(&outputDir, "o", "dist", `Specify output directory.`)
-	flag.BoolVar(&runTempl, "t", false, "Run templ fmt & generate commands.")
+	flag.BoolVar(&runFormat, "f", false, "Run templ fmt.")
+	flag.BoolVar(&runGenerate, "g", false, "Run templ generate.")
 	flag.BoolVar(&debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
 	flag.Usage = usage
 	flag.Parse()
@@ -67,11 +69,14 @@ func main() {
 		log.Fatal("Error finding files:", err)
 	}
 
-	if runTempl {
+	if runFormat {
 		err := generator.RunTemplFmt(groupedFiles.TemplFiles)
 		if err != nil {
 			log.Fatalf("failed to run 'templ fmt' command: %v", err)
 		}
+	}
+
+	if runGenerate {
 		err = generator.RunTemplGenerate()
 		if err != nil {
 			log.Fatalf("failed to run 'templ generate' command: %v", err)
