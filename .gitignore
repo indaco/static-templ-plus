@@ -3,3 +3,5 @@
 web/
 dist/
 temp/
+
+.DS_Store
