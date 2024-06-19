@@ -1,4 +1,4 @@
-module github.com/nokacper24/static-templ
+module github.com/indaco/static-templ-plus
 
 go 1.22.0
 

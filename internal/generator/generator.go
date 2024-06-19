@@ -10,7 +10,7 @@ import (
 
 	"github.com/a-h/templ/cmd/templ/fmtcmd"
 	"github.com/a-h/templ/cmd/templ/generatecmd"
-	"github.com/nokacper24/static-templ/internal/finder"
+	"github.com/indaco/static-templ-plus/internal/finder"
 )
 
 // Template for the output go script.

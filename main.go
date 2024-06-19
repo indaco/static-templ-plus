@@ -9,8 +9,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/nokacper24/static-templ/internal/finder"
-	"github.com/nokacper24/static-templ/internal/generator"
+	"github.com/indaco/static-templ-plus/internal/finder"
+	"github.com/indaco/static-templ-plus/internal/generator"
 )
 
 const (
