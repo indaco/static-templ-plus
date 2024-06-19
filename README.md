@@ -23,7 +23,7 @@ This project aims to remain compatible with the original repository, ensuring th
 To avoid confusion with the original repository, the Go module name has been changed.
 
 ```bash
-go install github.com/indaco/static-templ-plus
+go install github.com/indaco/static-templ-plus@latest
 ```
 
 ## Usage
