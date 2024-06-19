@@ -19,13 +19,13 @@ const (
 )
 
 func main() {
-	var inputDir string
-	var outputDir string
-	var runTempl bool
+	var inputDir, outputDir string
+	var runTempl, debug bool
 
 	flag.StringVar(&inputDir, "i", "web/pages", `Specify input directory.`)
 	flag.StringVar(&outputDir, "o", "dist", `Specify output directory.`)
 	flag.BoolVar(&runTempl, "t", false, "Run templ fmt & generate commands.")
+	flag.BoolVar(&debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
 	flag.Parse()
 
 	inputDir = strings.TrimRight(inputDir, "/")
@@ -92,9 +92,12 @@ func main() {
 		log.Fatal("err running script", err)
 	}
 
-	if err = os.Remove(getOutputScriptPath()); err != nil {
-		log.Fatal("err removing script file", err)
+	if debug {
+		if err = os.RemoveAll(outputScriptDirPath); err != nil {
+			log.Fatal("err removing script folder", err)
+		}
 	}
+
 }
 
 func getOutputScriptPath() string {
