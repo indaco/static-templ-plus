@@ -77,7 +77,7 @@ func main() {
 	}
 
 	if runGenerate {
-		err = generator.RunTemplGenerate()
+		err := generator.RunTemplGenerate()
 		if err != nil {
 			log.Fatalf("failed to run 'templ generate' command: %v", err)
 		}
