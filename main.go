@@ -116,7 +116,7 @@ func main() {
 		log.Fatal("err running script", err)
 	}
 
-	if debug {
+	if !debug {
 		if err = os.RemoveAll(outputScriptDirPath); err != nil {
 			log.Fatal("err removing script folder", err)
 		}
