@@ -39,22 +39,21 @@ The usage of this module is the same as the original one, with the following enh
 You can use it as follows:
 
 ```bash
-Usage of ./static-templ-plus:
-./static-templ-plus [options]
+Usage of static-templ-plus:
+static-templ [options]
 
 Options:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
   -f  Run templ fmt.
   -g  Run templ generate.
-  -d  Keep the generation script after completion for inspection and debugging.
 
 Examples:
-  # Run templ fmt & templ generate commands and output to default directory
-  ./static-templ-plus -i web/pages -f=true -g=true
-
   # Specify input and output directories
-  ./static-templ-plus -i web/pages -o web/pages
+  static-templ-plus -i web/demos -o output
+
+  # Specify input directory, run templ generate and output to default directory
+  static-templ-plus -i web/demos -g=true
 ```
 
 ## Assumptions
