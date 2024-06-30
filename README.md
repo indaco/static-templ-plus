@@ -9,6 +9,7 @@ This project is based on the original repository but has been given a new name t
 - **Enhancement 1**: ~~Prevent deletion of input directory when `-i` and `-o` have the same value ~~ ([#2]) -> **merged**.
 - **Enhancement 2**: ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
 - **Enhancement 3**: ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
+- **Enhancement 4**: Add `version` subcommand ([#10]).
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
 
@@ -40,13 +41,17 @@ You can use it as follows:
 
 ```bash
 Usage of static-templ-plus:
-static-templ [options]
+static-templ-plus [flags] [subcommands]
 
-Options:
+Flags:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
   -f  Run templ fmt.
   -g  Run templ generate.
+  -d  Keep the generation script after completion for inspection and debugging.
+
+Subcommands:
+  version  Display the version information.
 
 Examples:
   # Specify input and output directories
@@ -54,6 +59,9 @@ Examples:
 
   # Specify input directory, run templ generate and output to default directory
   static-templ-plus -i web/demos -g=true
+
+  # Display the version information
+  static-templ-plus version
 ```
 
 ## Assumptions
@@ -80,3 +88,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#2]: https://github.com/nokacper24/static-templ/pull/2
 [#4]: https://github.com/nokacper24/static-templ/pull/4
 [#5]: https://github.com/nokacper24/static-templ/pull/5
+[#10]: https://github.com/nokacper24/static-templ/pull/10
