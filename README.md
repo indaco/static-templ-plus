@@ -6,9 +6,9 @@ This repository is an extension of the original [static-templ](https://github.co
 
 This project is based on the original repository but has been given a new name to differentiate it from the original. Below are the key enhancements added to this project to fulfill specific use cases. For each enhancement, a pull request (PR) has been submitted to the original repository:
 
-- **Enhancement 1**: Prevent deletion of input directory when `-i` and `-o` have the same value ([#2]).
-- **Enhancement 2**: Ensure generated HTML filename matches its corresponding templ file ([#4]).
-- **Enhancement 3**: Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus` ([#5]).
+- **Enhancement 1**: ~~Prevent deletion of input directory when `-i` and `-o` have the same value ~~ ([#2]) -> **merged**.
+- **Enhancement 2**: ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
+- **Enhancement 3**: ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
 

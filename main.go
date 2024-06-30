@@ -18,32 +18,12 @@ const (
 	outputScriptFileName string = "templ_static_generate_script.go"
 )
 
-func usage() {
-	fmt.Fprintf(os.Stderr, `Usage of %s:
-%s [options]
-
-Options:
-  -i  Specify input directory (default "web/pages").
-  -o  Specify output directory (default "dist").
-  -f  Run templ fmt.
-  -g  Run templ generate.
-  -d  Keep the generation script after completion for inspection and debugging.
-
-Examples:
-  # Run templ fmt & templ generate commands and output to default directory
-  %s -i web/pages -f=true -g=true
-
-  # Specify input and output directories
-  %s -i web/pages -o web/pages
-`, os.Args[0], os.Args[0], os.Args[0], os.Args[0])
-}
-
 func main() {
 	var inputDir, outputDir string
 	var runFormat, runGenerate, debug bool
 
-	flag.StringVar(&inputDir, "i", "web/pages", `Specify input directory.`)
-	flag.StringVar(&outputDir, "o", "dist", `Specify output directory.`)
+	flag.StringVar(&inputDir, "i", "web/pages", "Specify input directory.")
+	flag.StringVar(&outputDir, "o", "dist", "Specify output directory.")
 	flag.BoolVar(&runFormat, "f", false, "Run templ fmt.")
 	flag.BoolVar(&runGenerate, "g", false, "Run templ generate.")
 	flag.BoolVar(&debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
@@ -121,7 +101,26 @@ func main() {
 			log.Fatal("err removing script folder", err)
 		}
 	}
+}
 
+func usage() {
+	fmt.Fprintf(os.Stderr, `Usage of %s:
+%s [options]
+
+Options:
+  -i  Specify input directory (default "web/pages").
+  -o  Specify output directory (default "dist").
+  -f  Run templ fmt.
+  -g  Run templ generate.
+  -d  Keep the generation script after completion for inspection and debugging.
+
+Examples:
+  # Specify input and output directories
+  %s -i web/demos -o output
+
+  # Specify input directory, run templ generate and output to default directory
+  %s -i web/demos -g=true
+`, os.Args[0], os.Args[0], os.Args[0], os.Args[0])
 }
 
 func getOutputScriptPath() string {

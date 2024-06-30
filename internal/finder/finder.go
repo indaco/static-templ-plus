@@ -8,8 +8,8 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
-	"strings"
 
+	"github.com/gobeam/stringy"
 	"golang.org/x/mod/modfile"
 )
 
@@ -18,6 +18,7 @@ type FunctionToCall struct {
 	PackageName  string
 	FunctionName string
 	FilePath     string // used to determine import needed
+	IsAlone      bool   // whether the component is the only one declared in a file
 }
 
 // Finds path of the Go module the program is executed in.
@@ -64,6 +65,8 @@ func FindFunctionsInFiles(files filePaths) ([]FunctionToCall, error) {
 
 	fileSt := token.NewFileSet()
 	for _, path := range files {
+		var funcsInFile []FunctionToCall // funcs found in this file
+
 		astFile, err := parser.ParseFile(fileSt, path, nil, parser.AllErrors)
 		if err != nil {
 			return nil, err
@@ -74,18 +77,24 @@ func FindFunctionsInFiles(files filePaths) ([]FunctionToCall, error) {
 				isExported := ast.IsExported(fn.Name.Name)
 				hasParams := len(fn.Type.Params.List) != 0
 				if isExported && !hasParams {
-					functionName := fn.Name
-					funcs = append(
-						funcs,
+					funcsInFile = append(
+						funcsInFile,
 						FunctionToCall{
 							getFileNameWithoutExt(path),
 							packageName,
-							functionName.Name,
+							fn.Name.Name,
 							path,
+							true,
 						})
 				}
 			}
 		}
+		if len(funcsInFile) > 1 {
+			for i := range funcsInFile {
+				funcsInFile[i].IsAlone = false
+			}
+		}
+		funcs = append(funcs, funcsInFile...)
 	}
 	return funcs, nil
 }
@@ -103,11 +112,20 @@ func getFileNameWithoutExt(path string) string {
 
 // Returns a string to be used as the name for HTML file generated from this component.
 //
-// Based on the original file name, with "-" replaced by "_", lowercased and .html added at the end.
+// Based on the original file name if component is the only one declared in the given file. Otherwise the function name is used.
+//
+// The filename is slugifdied, e.g. "HelloWorld" -> "hello-world.html"
 func (f *FunctionToCall) HtmlFileName() string {
-	noUnderscore := strings.ReplaceAll(f.FileName, "_", "-")
-	lowered := strings.ToLower(noUnderscore)
-	return fmt.Sprintf("%s.html", lowered)
+	var filename string
+	if f.IsAlone {
+		filename = f.FileName
+	} else {
+		filename = f.FunctionName
+	}
+
+	str := stringy.New(filename)
+	slugified := str.KebabCase().ToLower()
+	return fmt.Sprintf("%s.html", slugified)
 }
 
 type groupedFiles struct {
