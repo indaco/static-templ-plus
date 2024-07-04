@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"flag"
 	"fmt"
 	"log"
@@ -13,8 +14,10 @@ import (
 	"github.com/indaco/static-templ-plus/internal/generator"
 )
 
+//go:embed .version
+var versionFile embed.FS
+
 const (
-	version      = "1.0.0"
 	templVersion = "0.2.731"
 )
 
@@ -34,7 +37,7 @@ func main() {
 	switch os.Args[1] {
 	case "version", "--version":
 		versionCmd.Parse(os.Args[2:])
-		printVersion(version, templVersion)
+		printVersion(getVersion(), templVersion)
 		return
 	default:
 		// Continue with existing flag parsing
@@ -163,6 +166,14 @@ Examples:
   # Display the version information
   %s version
 `, os.Args[0], os.Args[0], os.Args[0], os.Args[0], os.Args[0])
+}
+
+func getVersion() string {
+	content, err := versionFile.ReadFile(".version")
+	if err != nil {
+		return "unknown"
+	}
+	return strings.TrimSpace(string(content))
 }
 
 func printVersion(version, templVersion string) {
