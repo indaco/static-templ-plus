@@ -77,6 +77,35 @@ All files other than `.go` and `.templ` files will be copied to the output direc
 
 Contributions are welcome! If you have suggestions for improvements or new features, please submit an issue or a pull request.
 
+Before submitting a pull request, please follow these steps to ensure a smooth and consistent development process:
+
+### Setting Up Git Hooks
+
+We use Git hooks to automate versioning and ensure code quality. After cloning the repository, you must set up the Git hooks by running the following script. This step ensures that the hooks are properly installed and executed on every commit.
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/indaco/static-templ-plus.git
+    cd static-templ-plus
+    ```
+
+2. Run the setup script to install the Git hooks:
+
+    **For Unix-based systems (Linux, macOS):**
+
+    ```bash
+      ./setup-hooks.sh
+    ```
+
+    **For Windows systems:**
+
+    ```cmd
+    setup-hooks.bat
+    ```
+
+By running the appropriate setup script, you ensure that the pre-commit hook is properly installed. This hook will automatically update the version number in the `.version` file and stage it for commit.
+
 ## Acknowledgements
 
 We would like to acknowledge the creators of the original repository for their excellent work. This project would not have been possible without their contributions.
