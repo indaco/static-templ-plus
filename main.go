@@ -193,7 +193,7 @@ func handlePagesMode(funcs []finder.FunctionToCall, modulePath, inputDir, output
 		log.Fatalf("Error copying files: %v", err)
 	}
 
-	if err := generator.Generate(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
+	if err := generator.GenerateForPagesMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
 		log.Fatalf("Error generating script when mode=pages: %v", err)
 	}
 
@@ -202,7 +202,7 @@ func handlePagesMode(funcs []finder.FunctionToCall, modulePath, inputDir, output
 
 // Handle components mode
 func handleComponentsMode(funcs []finder.FunctionToCall, modulePath, inputDir string, debug bool) {
-	if err := generator.GenerateForComponents(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir); err != nil {
+	if err := generator.GenerateForComponentsMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir); err != nil {
 		log.Fatalf("Error generating script when mode=components: %v", err)
 	}
 
