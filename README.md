@@ -39,6 +39,11 @@ The usage of this module is the same as the original one, with the following enh
 - A new flag `-g` has been added to eliminate the need for users to run `templ generate` separately.
 - A new flag `-d` has been added to keep the generation script after completion for inspection and debugging.
 
+### Modes
+
+- **Pages Mode** (`pages`): Generates HTML files in the specified output directory, mirroring the structure of the input directory. This mode is useful for converting a full set of pages.
+- **Components Mode** (`components`): Generates HTML files in the same directory as their corresponding `.templ` files. This mode is useful for smaller projects,  single-component development or for documenting components.
+
 You can use it as follows:
 
 ```bash
@@ -48,6 +53,7 @@ static-templ-plus [flags] [subcommands]
 Flags:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
+  -m  Set the operational mode ('pages' or 'components'. Default 'pages').
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
