@@ -18,7 +18,7 @@ import (
 var versionFile embed.FS
 
 const (
-	templVersion         = "0.2.731"
+	templVersion         = "0.2.747"
 	outputScriptDirPath  = "temp"
 	outputScriptFileName = "templ_static_generate_script.go"
 )
