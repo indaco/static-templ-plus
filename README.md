@@ -33,16 +33,12 @@ go install github.com/indaco/static-templ-plus@latest
 
 The usage of this module is the same as the original one, with the following enhancements:
 
-- Input and output directories can be the same.
-- Generated HTML filename matches its corresponding templ file.
-- A new flag `-f` has been added to eliminate the need for users to run `templ fmt` separately.
-- A new flag `-g` has been added to eliminate the need for users to run `templ generate` separately.
-- A new flag `-d` has been added to keep the generation script after completion for inspection and debugging.
-
 ### Modes
 
-- **Pages Mode** (`pages`): Generates HTML files in the specified output directory, mirroring the structure of the input directory. This mode is useful for converting a full set of pages.
-- **Components Mode** (`components`): Generates HTML files in the same directory as their corresponding `.templ` files. This mode is useful for smaller projects,  single-component development or for documenting components.
+A new flag `-m` has been added to address two specific use-cases:
+
+- **Pages Mode** (`pages`): Generates HTML files in the specified output directory, mirroring the structure of the input directory. This mode is useful for converting a full set of pages. It reflects the original `static-templ` way of working.
+- **Components Mode** (`components`): Generates HTML files in the same directory as their corresponding `.templ` files. This mode is useful for smaller projects, single-component development or for documenting components.
 
 You can use it as follows:
 
