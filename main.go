@@ -23,6 +23,15 @@ const (
 	outputScriptFileName = "templ_static_generate_script.go"
 )
 
+type flags struct {
+	InputDir    string
+	OutputDir   string
+	Mode        string
+	RunFormat   bool
+	RunGenerate bool
+	Debug       bool
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		usage()
@@ -37,22 +46,22 @@ func main() {
 		// Continue with existing flag parsing
 	}
 
-	inputDir, outputDir, runFormat, runGenerate, debug := parseFlags()
+	flags := parseFlags()
 
-	if outputDir != inputDir {
-		if err := clearAndCreateDir(outputDir); err != nil {
+	if flags.OutputDir != flags.InputDir {
+		if err := clearAndCreateDir(flags.OutputDir); err != nil {
 			log.Fatal("Error preparing output directory:", err)
 		}
 	}
 
-	modulePath, groupedFiles := prepareDirectories(inputDir)
+	modulePath, groupedFiles := prepareDirectories(flags.InputDir)
 
-	if runFormat {
+	if flags.RunFormat {
 		runTemplFmt(groupedFiles)
 	}
 
-	if runGenerate {
-		groupedFiles = runTemplGenerate(inputDir)
+	if flags.RunGenerate {
+		groupedFiles = runTemplGenerate(flags.InputDir)
 	}
 
 	funcs := findFunctions(groupedFiles.TemplGoFiles)
@@ -61,15 +70,15 @@ func main() {
 		log.Fatal("Error creating temp dir:", err)
 	}
 
-	if err := copyFilesIntoOutputDir(groupedFiles.OtherFiles, inputDir, outputDir); err != nil {
+	if err := copyFilesIntoOutputDir(groupedFiles.OtherFiles, flags.InputDir, flags.OutputDir); err != nil {
 		log.Fatal("Error copying files:", err)
 	}
 
-	if err := generator.Generate(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
+	if err := generator.Generate(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, flags.InputDir, flags.OutputDir); err != nil {
 		log.Fatal("Error generating script:", err)
 	}
 
-	runGeneratedScript(debug)
+	runGeneratedScript(flags.Debug)
 }
 
 func handleVersionCmd() {
@@ -81,19 +90,22 @@ func handleVersionCmd() {
 	printVersion(getVersion(), templVersion)
 }
 
-func parseFlags() (string, string, bool, bool, bool) {
-	var inputDir, outputDir string
-	var runFormat, runGenerate, debug bool
+func parseFlags() flags {
+	var flags flags
 
-	flag.StringVar(&inputDir, "i", "web/pages", "Specify input directory.")
-	flag.StringVar(&outputDir, "o", "dist", "Specify output directory.")
-	flag.BoolVar(&runFormat, "f", false, "Run templ fmt.")
-	flag.BoolVar(&runGenerate, "g", false, "Run templ generate.")
-	flag.BoolVar(&debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
+	flag.StringVar(&flags.InputDir, "i", "web/pages", "Specify input directory.")
+	flag.StringVar(&flags.OutputDir, "o", "dist", "Specify output directory.")
+	flag.StringVar(&flags.Mode, "mode", "standard", "Set the operational mode (standard or inline).")
+	flag.BoolVar(&flags.RunFormat, "f", false, "Run templ fmt.")
+	flag.BoolVar(&flags.RunGenerate, "g", false, "Run templ generate.")
+	flag.BoolVar(&flags.Debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
 	flag.Usage = usage
 	flag.Parse()
 
-	return strings.TrimRight(inputDir, "/"), strings.TrimRight(outputDir, "/"), runFormat, runGenerate, debug
+	flags.InputDir = strings.TrimRight(flags.InputDir, "/")
+	flags.OutputDir = strings.TrimRight(flags.OutputDir, "/")
+
+	return flags
 }
 
 func prepareDirectories(inputDir string) (string, *finder.GroupedFiles) {
