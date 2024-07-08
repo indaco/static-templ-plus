@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/indaco/static-templ-plus/internal/finder"
@@ -70,15 +71,14 @@ func main() {
 		log.Fatal("Error creating temp dir:", err)
 	}
 
-	if err := copyFilesIntoOutputDir(groupedFiles.OtherFiles, flags.InputDir, flags.OutputDir); err != nil {
-		log.Fatal("Error copying files:", err)
+	switch flags.Mode {
+	case "standard":
+		handleStandardMode(funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
+	case "inline":
+		handleInlineMode(funcs, modulePath, flags.InputDir, flags.Debug)
+	default:
+		log.Fatalf("Unknown mode: %s", flags.Mode)
 	}
-
-	if err := generator.Generate(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, flags.InputDir, flags.OutputDir); err != nil {
-		log.Fatal("Error generating script:", err)
-	}
-
-	runGeneratedScript(flags.Debug)
 }
 
 func handleVersionCmd() {
@@ -95,7 +95,7 @@ func parseFlags() flags {
 
 	flag.StringVar(&flags.InputDir, "i", "web/pages", "Specify input directory.")
 	flag.StringVar(&flags.OutputDir, "o", "dist", "Specify output directory.")
-	flag.StringVar(&flags.Mode, "mode", "standard", "Set the operational mode (standard or inline).")
+	flag.StringVar(&flags.Mode, "m", "standard", "Set the operational mode (standard or inline).")
 	flag.BoolVar(&flags.RunFormat, "f", false, "Run templ fmt.")
 	flag.BoolVar(&flags.RunGenerate, "g", false, "Run templ generate.")
 	flag.BoolVar(&flags.Debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
@@ -162,6 +162,22 @@ func findFunctions(templGoFiles []string) []finder.FunctionToCall {
 	return funcs
 }
 
+func handleStandardMode(funcs []finder.FunctionToCall, modulePath, inputDir, outputDir string, otherFiles []string, debug bool) {
+	if err := copyFilesIntoOutputDir(otherFiles, inputDir, outputDir); err != nil {
+		log.Fatal("Error copying files:", err)
+	}
+
+	if err := generator.Generate(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
+		log.Fatal("Error generating script:", err)
+	}
+
+	runGeneratedScript(debug)
+}
+
+func handleInlineMode(funcs []finder.FunctionToCall, modulePath, inputDir string, debug bool) {
+	// TO BE IMPLEMENTED
+}
+
 func runGeneratedScript(debug bool) {
 	cmd := exec.Command("go", "run", getOutputScriptPath())
 	if err := cmd.Start(); err != nil {
@@ -185,6 +201,7 @@ func usage() {
 Flags:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
+  -m  Set the operational mode (standard or inline).
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
@@ -252,5 +269,5 @@ func copyFilesIntoOutputDir(files []string, inputDir string, outputDir string) e
 }
 
 func getOutputScriptPath() string {
-	return fmt.Sprintf("%s/%s", outputScriptDirPath, outputScriptFileName)
+	return filepath.Join(outputScriptDirPath, outputScriptFileName)
 }
