@@ -58,7 +58,7 @@ func findAllFiles(root string) (filePaths, error) {
 	return paths, nil
 }
 
-// Goes throught the file paths provided and finds all exported fucntrions that take 0 parameters.
+// Goes through the file paths provided and finds all exported fucntrions that take 0 parameters.
 // Files provided must be valid Go source files.
 func FindFunctionsInFiles(files filePaths) ([]FunctionToCall, error) {
 	var funcs []FunctionToCall
