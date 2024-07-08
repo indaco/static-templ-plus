@@ -11,6 +11,7 @@ This project is based on the original repository but has been given a new name t
 - **Enhancement 3**: ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 - **Enhancement 4**: ~~Add `version` subcommand~~ ([#10]) -> **merged**.
 - **Fix 1**: ~~waiting for templ commands to complete~~ ([#12]) -> **merged**.
+- **Build & CI 1**: Version Management ([#14])
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
 
@@ -120,3 +121,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#5]: https://github.com/nokacper24/static-templ/pull/5
 [#10]: https://github.com/nokacper24/static-templ/pull/10
 [#12]: https://github.com/nokacper24/static-templ/pull/12
+[#14]: https://github.com/nokacper24/static-templ/pull/14
