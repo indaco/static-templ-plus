@@ -81,16 +81,16 @@ type StringedData struct {
 // Logger for templ commands.
 var logger = slog.New(sloghandler.NewHandler(os.Stderr, nil))
 
-// Generate creates an output script for pages, transforming templ files to HTML.
-func Generate(outputScriptPath string, imports []string, funcs []finder.FunctionToCall, inputDir string, outputDir string) error {
+// GenerateForPagesMode creates an output script for pages, transforming templ files to HTML.
+func GenerateForPagesMode(outputScriptPath string, imports []string, funcs []finder.FunctionToCall, inputDir string, outputDir string) error {
 	pathFunc := func(f finder.FunctionToCall) string {
 		return newFilePath(filepath.Dir(f.FilePath), inputDir, outputDir, f.HtmlFileName())
 	}
 	return generateFiles(outputScriptPath, "outputPages", outputScript, imports, funcs, pathFunc)
 }
 
-// GenerateForComponents creates an output script for components, transforming templ files to HTML in their respective directories.
-func GenerateForComponents(outputScriptPath string, imports []string, funcs []finder.FunctionToCall, outputPath string) error {
+// GenerateForComponentsMode creates an output script for components, transforming templ files to HTML in their respective directories.
+func GenerateForComponentsMode(outputScriptPath string, imports []string, funcs []finder.FunctionToCall, outputPath string) error {
 	pathFunc := func(f finder.FunctionToCall) string {
 		return filepath.Join(filepath.Dir(f.FilePath), f.HtmlFileName())
 	}
