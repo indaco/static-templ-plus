@@ -116,7 +116,7 @@ func parseFlags() flags {
 
 	flag.StringVar(&flags.InputDir, "i", "web/pages", "Specify input directory.")
 	flag.StringVar(&flags.OutputDir, "o", "dist", "Specify output directory.")
-	flag.StringVar(&flags.Mode, "m", "standard", "Set the operational mode ('pages' or 'components'. Default 'pages').")
+	flag.StringVar(&flags.Mode, "m", "pages", "Set the operational mode: pages or components.")
 	flag.BoolVar(&flags.RunFormat, "f", false, "Run templ fmt.")
 	flag.BoolVar(&flags.RunGenerate, "g", false, "Run templ generate.")
 	flag.BoolVar(&flags.Debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
@@ -232,9 +232,9 @@ func usage() {
 %[1]v [flags] [subcommands]
 
 Flags:
-  -i  Specify input directory (Default "web/pages").
-  -o  Specify output directory (Default "dist").
-  -m  Set the operational mode ("pages" or "components. Default "pages").
+  -i  Specify input directory (default "web/pages").
+  -o  Specify output directory (default "dist").
+  -m  Set the operational mode: pages or components. (default "pages").
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
