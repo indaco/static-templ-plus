@@ -49,7 +49,7 @@ static-templ-plus [flags] [subcommands]
 Flags:
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
-  -m  Set the operational mode ('pages' or 'components'. Default 'pages').
+  -m  Set the operational mode: pages or components. (default "pages").
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
@@ -74,7 +74,7 @@ Examples:
 
 Templ components that will be turned into html files must be **exported**, and take **no arguments**. If these conditions are not met, the component will be ignored. Your components must be in the *input* directory, their path will be mirrored in the *output* directory.
 
-All files other than `.go` and `.templ` files will be copied to the output directory, preserving the directory structure. This allows you to include any assets and reference them using relative paths.
+By default (`mode=pages`) all files other than `.go` and `.templ` files will be copied to the output directory, preserving the directory structure. This allows you to include any assets and reference them using relative paths.
 
 ## Contribution
 
