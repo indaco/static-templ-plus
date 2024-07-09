@@ -86,14 +86,16 @@ func main() {
 
 	// Create output script directory
 	if err := os.MkdirAll(outputScriptDirPath, os.ModePerm); err != nil {
-		log.Fatal("Error creating temp dir:", err)
+		log.Fatalf("Error creating temp dir: %v", err)
 	}
 
 	// Handle modes
 	switch flags.Mode {
 	case modePages:
+		log.Println("Operational mode: pages")
 		handlePagesMode(funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
 	case modeComponents:
+		log.Println("Operational mode: components")
 		handleComponentsMode(funcs, modulePath, flags.InputDir, flags.Debug)
 	default:
 		log.Fatalf("Unknown mode: %s", flags.Mode)
