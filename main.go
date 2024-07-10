@@ -92,10 +92,10 @@ func main() {
 	// Handle modes
 	switch flags.Mode {
 	case modeBundle:
-		log.Println("Operational mode: pages")
+		log.Println("Operational mode: bundle")
 		handlePagesMode(funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
 	case modeInline:
-		log.Println("Operational mode: components")
+		log.Println("Operational mode: inline")
 		handleComponentsMode(funcs, modulePath, flags.InputDir, flags.Debug)
 	default:
 		log.Fatalf("Unknown mode: %s", flags.Mode)
