@@ -29,8 +29,8 @@ const (
 
 // Constants for operational modes
 const (
-	modePages      = "pages"
-	modeComponents = "components"
+	modeBundle = "bundle"
+	modeInline = "inline"
 )
 
 // Struct to hold command line flags
@@ -62,7 +62,7 @@ func main() {
 	flags := parseFlags()
 
 	// Prepare output directory if necessary
-	if flags.Mode == modePages && flags.OutputDir != flags.InputDir {
+	if flags.Mode == modeBundle && flags.OutputDir != flags.InputDir {
 		if err := clearAndCreateDir(flags.OutputDir); err != nil {
 			log.Fatal("Error preparing output directory:", err)
 		}
@@ -91,10 +91,10 @@ func main() {
 
 	// Handle modes
 	switch flags.Mode {
-	case modePages:
+	case modeBundle:
 		log.Println("Operational mode: pages")
 		handlePagesMode(funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
-	case modeComponents:
+	case modeInline:
 		log.Println("Operational mode: components")
 		handleComponentsMode(funcs, modulePath, flags.InputDir, flags.Debug)
 	default:
@@ -116,9 +116,9 @@ func handleVersionCmd() {
 func parseFlags() flags {
 	var flags flags
 
+	flag.StringVar(&flags.Mode, "m", "bundle", "Set the operational mode: bundle or inline.")
 	flag.StringVar(&flags.InputDir, "i", "web/pages", "Specify input directory.")
 	flag.StringVar(&flags.OutputDir, "o", "dist", "Specify output directory.")
-	flag.StringVar(&flags.Mode, "m", "pages", "Set the operational mode: pages or components.")
 	flag.BoolVar(&flags.RunFormat, "f", false, "Run templ fmt.")
 	flag.BoolVar(&flags.RunGenerate, "g", false, "Run templ generate.")
 	flag.BoolVar(&flags.Debug, "d", false, "Keep the generation script after completion for inspection and debugging.")
@@ -234,9 +234,9 @@ func usage() {
 %[1]v [flags] [subcommands]
 
 Flags:
+  -m  Set the operational mode: bundle or inline. (default "bundle").
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
-  -m  Set the operational mode: pages or components. (default "pages").
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.

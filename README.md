@@ -39,8 +39,8 @@ The usage of this module is the same as the original one, with the following enh
 
 A new flag `-m` has been added to address two specific use-cases:
 
-- **Pages Mode** (`pages`): Generates HTML files in the specified output directory, mirroring the structure of the input directory. This mode is useful for converting a full set of pages. It reflects the original `static-templ` way of working.
-- **Components Mode** (`components`): Generates HTML files in the same directory as their corresponding `.templ` files. This mode is useful for smaller projects, single-component development or for documenting components.
+- **Bundle Mode** (`bundle`): Generates HTML files in the specified output directory, mirroring the structure of the input directory. This mode is useful for converting a full set of pages. It reflects the original `static-templ` way of working.
+- **Inline Mode** (`inline`): Generates HTML files in the same directory as their corresponding `.templ` files. This mode is useful for smaller projects, single-component development or for documenting components.
 
 You can use it as follows:
 
@@ -49,9 +49,9 @@ Usage of static-templ-plus:
 static-templ-plus [flags] [subcommands]
 
 Flags:
+  -m  Set the operational mode: bundle or inline. (default "bundle").
   -i  Specify input directory (default "web/pages").
   -o  Specify output directory (default "dist").
-  -m  Set the operational mode: pages or components. (default "pages").
   -f  Run templ fmt.
   -g  Run templ generate.
   -d  Keep the generation script after completion for inspection and debugging.
