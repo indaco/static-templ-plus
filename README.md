@@ -1,4 +1,19 @@
-# static-templ-plus
+<h1 align="center" style="font-size: 2.5rem;">
+  static-templ-plus
+</h1>
+<p align="center">
+  <a href="https://github.com/indaco/static-templ-plus/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/License-GNU%20GPL-blue?style=flat-square&logo=none" alt="license" />
+  </a>
+  &nbsp;
+  <a href="https://goreportcard.com/report/github.com/indaco/static-templ-plus/" target="_blank">
+    <img src="https://goreportcard.com/badge/github.com/indaco/static-templ-plus" alt="go report card" />
+  </a>
+  &nbsp;
+  <a href="https://pkg.go.dev/github.com/indaco/static-templ-plus/" target="_blank">
+      <img src="https://pkg.go.dev/badge/github.com/indaco/static-templ-plus/.svg" alt="go reference" />
+  </a>
+</p>
 
 This repository is an extension of the original [static-templ](https://github.com/nokacper24/static-templ) and has been developed to include additional functionalities. The original repository provided a solid foundation, and this project aims to build upon that work by introducing new features and improvements.
 
