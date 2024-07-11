@@ -11,9 +11,10 @@ This project is based on the original repository but has been given a new name t
 - **Enhancement 3**: ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 - **Enhancement 4**: ~~Add `version` subcommand~~ ([#10]) -> **merged**.
 - **Fix 1**: ~~waiting for templ commands to complete~~ ([#12]) -> **merged**.
-- **Build & CI 1**: Version Management ([#14]).
-- **Fix 2**: ensure path is OS compatible ([#16]).
-- **Chore 1**: simplify usage func with explicit argument indexes ([#17]).
+- **Build & CI 1**: ~~Version Management~~ ([#14]) -> **merged**.
+- **Fix 2**: ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
+- **Chore 1**: ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
+- **Refactor 1**: improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint ([#18]).
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
 
@@ -128,3 +129,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#14]: https://github.com/nokacper24/static-templ/pull/14
 [#16]: https://github.com/nokacper24/static-templ/pull/16
 [#17]: https://github.com/nokacper24/static-templ/pull/17
+[#18]: https://github.com/nokacper24/static-templ/pull/18
