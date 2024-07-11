@@ -63,43 +63,26 @@ func main() {
 
 	// Prepare output directory if necessary
 	if flags.Mode == modeBundle && flags.OutputDir != flags.InputDir {
-		if err := clearAndCreateDir(flags.OutputDir); err != nil {
-			log.Fatal("Error preparing output directory:", err)
-		}
+		prepareOutputDirectory(flags.OutputDir)
 	}
 
 	// Prepare directories and find files
 	modulePath, groupedFiles := prepareDirectories(flags.InputDir)
 
 	// Run templ fmt if specified
-	if flags.RunFormat {
-		runTemplFmt(groupedFiles)
-	}
+	runTemplFmtIfNeeded(flags.RunFormat, groupedFiles)
 
 	// Run templ generate if specified
-	if flags.RunGenerate {
-		groupedFiles = runTemplGenerate(flags.InputDir)
-	}
+	groupedFiles = runTemplGenerateIfNeeded(flags.RunGenerate, flags.InputDir)
 
 	// Find functions to call in the generated Go files
 	funcs := findFunctions(groupedFiles.TemplGoFiles)
 
 	// Create output script directory
-	if err := os.MkdirAll(outputScriptDirPath, os.ModePerm); err != nil {
-		log.Fatalf("Error creating temp dir: %v", err)
-	}
+	createOutputScriptDir()
 
 	// Handle modes
-	switch flags.Mode {
-	case modeBundle:
-		log.Println("Operational mode: bundle")
-		handlePagesMode(funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
-	case modeInline:
-		log.Println("Operational mode: inline")
-		handleComponentsMode(funcs, modulePath, flags.InputDir, flags.Debug)
-	default:
-		log.Fatalf("Unknown mode: %s", flags.Mode)
-	}
+	handleMode(flags.Mode, funcs, modulePath, flags.InputDir, flags.OutputDir, groupedFiles.OtherFiles, flags.Debug)
 }
 
 // Handle the version command to display the version information
@@ -146,6 +129,13 @@ func prepareDirectories(inputDir string) (string, *finder.GroupedFiles) {
 	return modulePath, groupedFiles
 }
 
+// Run templ fmt command if needed
+func runTemplFmtIfNeeded(runFormat bool, groupedFiles *finder.GroupedFiles) {
+	if runFormat {
+		runTemplFmt(groupedFiles)
+	}
+}
+
 // Run templ fmt command
 func runTemplFmt(groupedFiles *finder.GroupedFiles) {
 	done := make(chan struct{})
@@ -157,6 +147,14 @@ func runTemplFmt(groupedFiles *finder.GroupedFiles) {
 	}()
 	<-done
 	log.Println("Completed running 'templ fmt'")
+}
+
+// Run templ generate command if needed
+func runTemplGenerateIfNeeded(runGenerate bool, inputDir string) *finder.GroupedFiles {
+	if runGenerate {
+		return runTemplGenerate(inputDir)
+	}
+	return nil
 }
 
 // Run templ generate command
@@ -187,6 +185,27 @@ func findFunctions(templGoFiles []string) []finder.FunctionToCall {
 		log.Fatalf(`No components found`)
 	}
 	return funcs
+}
+
+// Create output script directory
+func createOutputScriptDir() {
+	if err := os.MkdirAll(outputScriptDirPath, os.ModePerm); err != nil {
+		log.Fatalf("Error creating temp dir: %v", err)
+	}
+}
+
+// Handle operational mode
+func handleMode(mode string, funcs []finder.FunctionToCall, modulePath, inputDir, outputDir string, otherFiles []string, debug bool) {
+	switch mode {
+	case modeBundle:
+		log.Println("Operational mode: bundle")
+		handlePagesMode(funcs, modulePath, inputDir, outputDir, otherFiles, debug)
+	case modeInline:
+		log.Println("Operational mode: inline")
+		handleComponentsMode(funcs, modulePath, inputDir, debug)
+	default:
+		log.Fatalf("Unknown mode: %s", mode)
+	}
 }
 
 // Handle pages mode
@@ -279,6 +298,13 @@ func clearAndCreateDir(dir string) error {
 		return err
 	}
 	return os.MkdirAll(dir, os.ModePerm)
+}
+
+// Prepare output directory by clearing and creating it
+func prepareOutputDirectory(outputDir string) {
+	if err := clearAndCreateDir(outputDir); err != nil {
+		log.Fatal("Error preparing output directory:", err)
+	}
 }
 
 // Copy a file from one path to another

@@ -1,0 +1,20 @@
+linters:
+  enable:
+    - errcheck
+    - gofmt
+    - govet
+    - staticcheck
+    - unused
+    - gocyclo
+linters-settings:
+  gofmt:
+    module-path: github.com/indaco/static-templ-plus
+    rewrite-rules:
+      - pattern: 'interface{}'
+        replacement: 'any'
+      - pattern: 'a[b:len(a)]'
+        replacement: 'a[b:]'
+  gocyclo:
+    # Minimal code complexity to report.
+    # Default: 30 (but we recommend 10-20)
+    min-complexity: 10
