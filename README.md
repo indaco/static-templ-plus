@@ -19,26 +19,42 @@ This repository is an extension of the original [static-templ](https://github.co
 
 ## About This Project
 
-This project is based on the original repository but has been given a new name to differentiate it from the original. Below are the key enhancements added to this project to fulfill specific use cases. For each enhancement, a pull request (PR) has been submitted to the original repository:
+This project is based on the original repository but has been given a new name to differentiate it from the original.
 
-- **Enhancement 1**: ~~Prevent deletion of input directory when `-i` and `-o` have the same value~~ ([#2]) -> **merged**.
-- **Enhancement 2**: ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
-- **Enhancement 3**: ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
-- **Enhancement 4**: ~~Add `version` subcommand~~ ([#10]) -> **merged**.
-- **Fix 1**: ~~waiting for templ commands to complete~~ ([#12]) -> **merged**.
-- **Build & CI 1**: ~~Version Management~~ ([#14]) -> **merged**.
-- **Fix 2**: ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
-- **Chore 1**: ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
-- **Refactor 1**: ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint~~([#18]) -> **merged**.
-- **Enhancement 4**: bump `templ` to v747 and add a new flag `m` for operational modes [#19].
+Below are the key enhancements added to this project to fulfill specific use cases. For each enhancement, a pull request (PR) has been submitted to the original repository:
 
-I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
+### Fixes
 
-By using this version, you can take advantage of the new features while still benefiting from the updates and improvements made to the original project.
+1. ~~waiting for templ commands to complete~~ ([#12]) -> **merged**.
+2. ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
+
+### Enhancements
+
+1. ~~Prevent deletion of input directory when `-i` and `-o` have the same value~~ ([#2]) -> **merged**.
+2. ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
+3. ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
+4. ~~Add `version` subcommand~~ ([#10]) -> **merged**.
+5. bump `templ` to v747 and add a new flag `m` for operational modes [#19].
+
+### Refactor
+
+1. ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint~~([#18]) -> **merged**.
+
+### Build & Ci
+
+1. ~~Version Management~~ ([#14]) -> **merged**.
+
+### Chore
+
+1. ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
 
 ## Compatibility
 
 This project aims to remain compatible with the original repository, ensuring that you can use it as a drop-in replacement if needed. However, please review the changes and test your integration thoroughly.
+
+I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
+
+By using this version, you can take advantage of the new features while still benefiting from the updates and improvements made to the original project.
 
 ## Installation
 
