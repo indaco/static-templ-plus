@@ -29,7 +29,7 @@ This project is based on the original repository but has been given a new name t
 - **Build & CI 1**: ~~Version Management~~ ([#14]) -> **merged**.
 - **Fix 2**: ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
 - **Chore 1**: ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
-- **Refactor 1**: ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint ~~([#18]) -> **merged**.
+- **Refactor 1**: ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint~~([#18]) -> **merged**.
 - **Enhancement 4**: bump `templ` to v747 and add a new flag `m` for operational modes [#19].
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
