@@ -208,22 +208,22 @@ func handleMode(mode string, funcs []finder.FunctionToCall, modulePath, inputDir
 	}
 }
 
-// Handle pages mode
+// Handle bundle mode
 func handlePagesMode(funcs []finder.FunctionToCall, modulePath, inputDir, outputDir string, otherFiles []string, debug bool) {
 	if err := copyFilesIntoOutputDir(otherFiles, inputDir, outputDir); err != nil {
 		log.Fatalf("Error copying files: %v", err)
 	}
 
-	if err := generator.GenerateForPagesMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
+	if err := generator.GenerateForBundleMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir, outputDir); err != nil {
 		log.Fatalf("Error generating script when mode=pages: %v", err)
 	}
 
 	runGeneratedScript(debug)
 }
 
-// Handle components mode
+// Handle inline mode
 func handleComponentsMode(funcs []finder.FunctionToCall, modulePath, inputDir string, debug bool) {
-	if err := generator.GenerateForComponentsMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir); err != nil {
+	if err := generator.GenerateForInlineMode(getOutputScriptPath(), finder.FindImports(funcs, modulePath), funcs, inputDir); err != nil {
 		log.Fatalf("Error generating script when mode=components: %v", err)
 	}
 
