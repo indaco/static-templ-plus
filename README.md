@@ -29,7 +29,8 @@ This project is based on the original repository but has been given a new name t
 - **Build & CI 1**: ~~Version Management~~ ([#14]) -> **merged**.
 - **Fix 2**: ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
 - **Chore 1**: ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
-- **Refactor 1**: improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint ([#18]).
+- **Refactor 1**: ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint ~~([#18]) -> **merged**.
+- **Enhancement 4**: bump `templ` to v747 and add a new flag `m` for operational modes [#19].
 
 I actively keep this project updated with the latest changes from the original repository. If and when the PRs are accepted, I will evaluate switching back to the original repository to ensure alignment and maintainability.
 
@@ -102,7 +103,7 @@ Before submitting a pull request, please follow these steps to ensure a smooth a
 
 ### Setting Up Git Hooks
 
-We use Git hooks to automate versioning and ensure code quality. After cloning the repository, you must set up the Git hooks by running the following script. This step ensures that the hooks are properly installed and executed on every commit.
+We use Git hooks to automate versioning and ensure code quality. After cloning the repository, you must set up the Git hooks by running the following script. This step ensures that the hooks are properly installed and executed when needed.
 
 1. Clone the repository:
 
@@ -145,3 +146,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#16]: https://github.com/nokacper24/static-templ/pull/16
 [#17]: https://github.com/nokacper24/static-templ/pull/17
 [#18]: https://github.com/nokacper24/static-templ/pull/18
+[#19]: https://github.com/nokacper24/static-templ/pull/19
