@@ -25,8 +25,9 @@ Below are the key enhancements added to this project to fulfill specific use cas
 
 ### Fixes
 
-1. ~~waiting for templ commands to complete~~ ([#12]) -> **merged**.
-2. ~~ensure path is OS compatible~~ ([#16]) -> **merged**.
+1. ~~Waiting for templ commands to complete~~ ([#12]) -> **merged**.
+2. ~~Ensure path is OS compatible~~ ([#16]) -> **merged**.
+3. ~~Incorrect message displayed when flags are set~~ ([#20]) -> **merged**.
 
 ### Enhancements
 
@@ -34,11 +35,11 @@ Below are the key enhancements added to this project to fulfill specific use cas
 2. ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
 3. ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 4. ~~Add `version` subcommand~~ ([#10]) -> **merged**.
-5. ~~bump `templ` to v747 and add a new flag `m` for operational modes~~ [#19] -> **merged**.
+5. ~~Bump `templ` to v747 and add a new flag `m` for operational modes~~ [#19] -> **merged**.
 
 ### Refactor
 
-1. ~~improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint~~([#18]) -> **merged**.
+1. ~~Improve the overall quality code measures (`gofmt`, `go vet`, `go lint` and `gocyclo`) reported by goreportcard and golangci-lint~~([#18]) -> **merged**.
 
 ### Build & Ci
 
@@ -46,7 +47,7 @@ Below are the key enhancements added to this project to fulfill specific use cas
 
 ### Chore
 
-1. ~~simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
+1. ~~Simplify usage func with explicit argument indexes~~ ([#17]) -> **merged**.
 
 ## Compatibility
 
@@ -163,3 +164,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#17]: https://github.com/nokacper24/static-templ/pull/17
 [#18]: https://github.com/nokacper24/static-templ/pull/18
 [#19]: https://github.com/nokacper24/static-templ/pull/19
+[#20]: https://github.com/nokacper24/static-templ/pull/20
