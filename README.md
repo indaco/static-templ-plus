@@ -28,7 +28,7 @@ Below are the key enhancements added to this project to fulfill specific use cas
 1. ~~Waiting for templ commands to complete~~ ([#12]) -> **merged**.
 2. ~~Ensure path is OS compatible~~ ([#16]) -> **merged**.
 3. ~~Incorrect message displayed when flags are set~~ ([#20]) -> **merged**.
-4. go import path and file path strings on windows ([#21])
+4. ~~go import path and file path strings on windows~~ ([#21]) -> **merged**.
 
 ### Enhancements
 
