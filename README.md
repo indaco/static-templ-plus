@@ -36,8 +36,8 @@ Below are the key enhancements added to this project to fulfill specific use cas
 2. ~~Ensure generated HTML filename matches its corresponding templ file~~ ([#4]) -> **merged**.
 3. ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 4. ~~Add `version` subcommand~~ ([#10]) -> **merged**.
-5. ~~Bump `templ` to v747 and add a new flag `m` for operational modes~~ [#19] -> **merged**.
-6. Bump `templ` to v747 and add a new flag `m` for operational modes [#23].
+5. ~~Bump `templ` to v0.2.747 and add a new flag `m` for operational modes~~ [#19] -> **merged**.
+6. Bump `templ` to v0.2.793 and add a new flag `m` for operational modes [#23].
 
 ### Refactor
 
