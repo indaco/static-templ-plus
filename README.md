@@ -37,6 +37,7 @@ Below are the key enhancements added to this project to fulfill specific use cas
 3. ~~Enable direct execution of `templ fmt` and `templ generate` from `static-templ-plus`~~ ([#5]) -> **merged**.
 4. ~~Add `version` subcommand~~ ([#10]) -> **merged**.
 5. ~~Bump `templ` to v747 and add a new flag `m` for operational modes~~ [#19] -> **merged**.
+6. Bump `templ` to v747 and add a new flag `m` for operational modes [#23].
 
 ### Refactor
 
@@ -167,3 +168,4 @@ This project is licensed under the same terms as the original repository. For mo
 [#19]: https://github.com/nokacper24/static-templ/pull/19
 [#20]: https://github.com/nokacper24/static-templ/pull/20
 [#21]: https://github.com/nokacper24/static-templ/pull/21
+[#23]: https://github.com/nokacper24/static-templ/pull/23
